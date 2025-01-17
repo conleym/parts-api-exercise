@@ -71,6 +71,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <!-- starts postgres automatically before starting the service -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-docker-compose</artifactId>
             <scope>runtime</scope>
