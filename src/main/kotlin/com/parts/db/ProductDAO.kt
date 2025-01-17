@@ -16,9 +16,13 @@ class ProductDAO @Autowired constructor(
     private val jdbcTemplate: NamedParameterJdbcTemplate
 ) {
     /**
-     * Get all the products, one page at a time.
+     * Get all the products, one page at a time. Products are ordered by id. Each product's parts are also ordered by
+     * id.
+     *
+     * @param lastId if non-null, only products with an id greater than this will be returned.
+     * @param pageSize maximum number of products to return.
      */
-    fun getAllProducts(lastId: Int?, pageSize: Int?): List<ProductEntity> {
+    fun getAllProducts(lastId: Int?, pageSize: Int): List<ProductEntity> {
         val params = MapSqlParameterSource()
         params[GetAllProducts.LAST_ID_PARAM] = lastId
         params[GetAllProducts.PAGE_SIZE_PARAM] = pageSize

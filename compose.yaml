@@ -3,7 +3,8 @@ services:
     build: docker/postgresql
     ports:
       # Update as needed -- postgres will be available on localhost:6432
-      # (to avoid conflicts with any other local instance)
+      # (to avoid conflicts with any other local instance). If you change this, you'll need to update the database
+      # settings in `application.properties` to match.
       - "127.0.0.1:6432:5432"
     environment:
       # Not recommended, but easy, and fine for local dev.

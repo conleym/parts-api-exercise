@@ -26,14 +26,15 @@ class ProductController @Autowired constructor(
      */
     @GetMapping
     fun getAll(
-        @RequestParam lastId: Int?,
+        @RequestParam("last_id") lastId: Int?,
         @[
             Min(1)
             Max(MAX_PAGE_SIZE.toLong())
-            RequestParam(defaultValue = DEFAULT_PAGE_SIZE.toString())
-        ] pageSize: Int?
+            RequestParam(name = "page_size", defaultValue = DEFAULT_PAGE_SIZE.toString())
+        ] pageSize: Int
     ): List<Product> {
         val entities = productDAO.getAllProducts(lastId, pageSize)
+        // Convert entities to API response objects.
         return entities.map { productEntity ->
             Product(
                 id = productEntity.id,
